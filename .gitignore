@@ -36,4 +36,4 @@
 .project
 out/
 grails-app-request-stats.iml
-
+grails-app-request-stats-grailsPlugins.iml
