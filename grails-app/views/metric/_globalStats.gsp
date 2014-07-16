@@ -53,7 +53,7 @@
             <td>Exception </td>
             <td>${metric.totalException} u</td>
         </tr>
-        <tr ${metric.exceptionPercentage > grailsApplication.config.metric.lowerBound ? "class=danger" : ""}>
+        <tr ${metric.exceptionPercentage > grailsApplication.config.requestStats.metric.lowerBound ? "class=danger" : ""}>
             <td>Exception %</td>
             <td>${metric.exceptionPercentage} %</td>
         </tr>

@@ -15,11 +15,8 @@
 <body>
     <h1>App Stats</h1>
     <g:set var="globalMetric" value="${appMetric.appMetric}"/>
-    <g:render template="globalStats" model="[tituloStat: 'app stats',
-            metric: globalMetric]"/>
-<g:render template="specificStats" model="[tituloStat: 'Controllers',
-            metrics: appMetric.getAllControllersMetrics(),
-            templateName: 'nameController']"/>
+    <g:render template="globalStats" model="[tituloStat: 'app stats', metric: globalMetric]"/>
+    <g:render template="specificStats" model="[tituloStat: 'Controllers',  metrics: appMetric.getAllControllersMetrics(), templateName: 'nameController']"/>
 
 
 

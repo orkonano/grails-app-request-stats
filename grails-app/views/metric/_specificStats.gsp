@@ -20,7 +20,7 @@
         </thead>
         <tbody>
         <g:each in="${metrics}" var="metric">
-            <tr ${metric.exceptionPercentage > grailsApplication.config.metric.lowerBound ? "class=danger" : ""}>
+            <tr ${metric.exceptionPercentage > grailsApplication.config.requestStats.metric.lowerBound ? "class=danger" : ""}>
                 <td><g:render template="${templateName}" model="[metric: metric]"/></td>
                 <td>${metric.timeProcessor}</td>
                 <td>${metric.lastTimeProcessor}</td>

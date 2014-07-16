@@ -1,3 +1,5 @@
+import ar.com.orkodev.requestStat.metric.AppMetric
+
 class GrailsAppRequestStatsGrailsPlugin {
     // the plugin version
     def version = "0.1"
@@ -5,7 +7,9 @@ class GrailsAppRequestStatsGrailsPlugin {
     def grailsVersion = "2.3 > *"
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
-        "grails-app/views/error.gsp"
+        "grails-app/views/error.gsp",
+        "grails-app/views/index.gsp",
+        "grails-app/controllers/ar/com/orkodev/requestStat/metric/controllers/TestController.groovy",
     ]
 
     def title = "Grails App Request Stats Plugin" // Headline display name of the plugin
@@ -40,7 +44,10 @@ Brief summary/description of the plugin.
     }
 
     def doWithSpring = {
-        // TODO Implement runtime spring config (optional)
+        appMetric(AppMetric){
+            grailsApplication = ref('grailsApplication')
+        }
+
     }
 
     def doWithDynamicMethods = { ctx ->
