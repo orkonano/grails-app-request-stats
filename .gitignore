@@ -28,7 +28,7 @@
 
 # "temporary" build files
 /target
-
+grails-grails-app-request-stats-0.1*.zip.sha1
 
 #IDE
 .classpath
@@ -36,4 +36,4 @@
 .project
 out/
 grails-app-request-stats.iml
-
+grails-app-request-stats-grailsPlugins.iml
