@@ -21,7 +21,4 @@ log4j = {
            'net.sf.ehcache.hibernate'
 }
 
-//--Metric
-requestStats{
-    metric.lowerBound = 1
-}
+grails.config.locations = [DefaultAppRequestStatsConfig]
