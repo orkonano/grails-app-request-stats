@@ -22,13 +22,13 @@
         <g:each in="${metrics}" var="metric">
             <tr ${metric.exceptionPercentage > grailsApplication.config.requestStats.metric.lowerBound ? "class=danger" : ""}>
                 <td><g:render template="${templateName}" model="[metric: metric]"/></td>
-                <td>${metric.timeProcessor}</td>
-                <td>${metric.lastTimeProcessor}</td>
-                <td>${metric.renderTimeProcessor}</td>
-                <td>${metric.lastRenderTimeProcessor}</td>
-                <td>${metric.totalTimeProcessor}</td>
-                <td>${metric.lastTotalTimeProcessor}</td>
-                <td>${metric.totalAccess}</td>
+                <td>${metric.timeProcessor} ms</td>
+                <td>${metric.lastTimeProcessor} ms</td>
+                <td>${metric.renderTimeProcessor} ms</td>
+                <td>${metric.lastRenderTimeProcessor} ms</td>
+                <td>${metric.totalTimeProcessor} ms</td>
+                <td>${metric.lastTotalTimeProcessor} ms</td>
+                <td>${metric.totalAccess} u</td>
                 <td>${metric.avg} ms</td>
                 <td>${metric.renderAvg} ms</td>
                 <td>${metric.totalAvg} ms</td>
