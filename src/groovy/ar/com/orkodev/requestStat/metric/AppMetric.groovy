@@ -20,7 +20,9 @@ class AppMetric extends Metric{
                 String nameController = controllerArtefact.getName().toLowerCase()
                 this.controllersMetrics.put(nameController, new ControllerMetric(name: nameController))
             }
-            this.controllersMetrics.put(DEFAULT_NAME, new ControllerMetric(name: DEFAULT_NAME))
+            this.controllersMetrics.put(DEFAULT_NAME, new ControllerMetric(name: DEFAULT_NAME,
+                    lowerBound: this.lowerBound))
+
             appMetric = new Metric(lowerBound: this.lowerBound)
         }
     }
