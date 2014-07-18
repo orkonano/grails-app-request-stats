@@ -11,7 +11,6 @@ class AppMetric extends Metric{
     Metric appMetric
     def grailsApplication
 
-
     def synchronized inicializarMapas(){
         if (appMetric == null){
             //contabilizo uno mas para cuando no se registra accón ni controlador
@@ -22,7 +21,7 @@ class AppMetric extends Metric{
                 this.controllersMetrics.put(nameController, new ControllerMetric(name: nameController))
             }
             this.controllersMetrics.put(DEFAULT_NAME, new ControllerMetric(name: DEFAULT_NAME))
-            appMetric = new Metric()
+            appMetric = new Metric(lowerBound: this.lowerBound)
         }
     }
 

@@ -1,4 +1,5 @@
 import ar.com.orkodev.requestStat.metric.AppMetric
+import grails.util.Holders
 
 class GrailsAppRequestStatsGrailsPlugin {
     // the plugin version
@@ -44,8 +45,25 @@ Brief summary/description of the plugin.
     }
 
     def doWithSpring = {
+        Integer lowerBound
+        if (Holders.grailsApplication.config?.requestStats?.metric?.lowerBound instanceof Integer) {
+            lowerBound = Holders.grailsApplication.config.requestStats.metric.lowerBound
+        }
+
+        if (!lowerBound){
+            GroovyClassLoader classLoader = new GroovyClassLoader(getClass().getClassLoader())
+            ConfigObject defaultConfig
+            try {
+                defaultConfig = new ConfigSlurper().parse(classLoader.loadClass('DefaultAppRequestStatsConfig'))
+                lowerBound = defaultConfig.requestStats.metric.lowerBound
+            } catch (Exception e) {
+                throw RuntimeException(e)
+            }
+        }
+
         appMetric(AppMetric){
             grailsApplication = ref('grailsApplication')
+            lowerBound = lowerBound
         }
 
     }

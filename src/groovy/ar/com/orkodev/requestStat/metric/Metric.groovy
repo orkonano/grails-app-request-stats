@@ -15,7 +15,7 @@ class Metric {
     AtomicInteger lastTimeProcessor
     AtomicInteger lastRenderTimeProcessor
     AtomicInteger totalException
-
+    Integer lowerBound
 
     public Metric(){
         timeProcessor = new AtomicLong(0)
@@ -70,5 +70,9 @@ class Metric {
 
     def getExceptionPercentage(){
         totalAccess.get() != 0 ? (totalException.get() / totalAccess.get())*100 : 0
+    }
+
+    def isUnderBound(){
+        exceptionPercentage > this.lowerBound
     }
 }

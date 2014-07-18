@@ -24,7 +24,7 @@ class ControllerMetric extends Metric{
 
     private Metric getActionMetricByName(actionName){
         actionName = procesarActionName(actionName)
-        Metric actionMetric = new Metric(name: actionName)
+        Metric actionMetric = new Metric(name: actionName, lowerBound: this.lowerBound)
         actionMetrics.putIfAbsent(actionName, actionMetric) ?: actionMetric
     }
 
