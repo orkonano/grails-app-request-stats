@@ -1,24 +1,25 @@
 package ar.com.orkodev.requestStat.metric
-
 /**
  * Created by orko on 14/07/14.
  */
-class AppMetric extends Metric{
+class AppMetric{
 
     static final String DEFAULT_NAME = "sin_nombre"
 
     Map<String, ControllerMetric> controllersMetrics
     Metric appMetric
+    Float lowerBound
     def grailsApplication
 
-    def synchronized inicializarMapas(){
+    synchronized void  inicializarMapas(){
         if (appMetric == null){
             //contabilizo uno mas para cuando no se registra accón ni controlador
             int totalControllers = grailsApplication.controllerClasses.size() + 1
             this.controllersMetrics = new HashMap<String, ControllerMetric>((int) Math.ceil(totalControllers / 0.75))
             for (controllerArtefact in grailsApplication.controllerClasses){
                 String nameController = controllerArtefact.getName().toLowerCase()
-                this.controllersMetrics.put(nameController, new ControllerMetric(name: nameController))
+                this.controllersMetrics.put(nameController, new ControllerMetric(name: nameController,
+                        lowerBound: this.lowerBound))
             }
             this.controllersMetrics.put(DEFAULT_NAME, new ControllerMetric(name: DEFAULT_NAME,
                     lowerBound: this.lowerBound))
@@ -27,7 +28,7 @@ class AppMetric extends Metric{
         }
     }
 
-    def incrementAccess(String controllerName, String actionName){
+    void incrementAccess(String controllerName, String actionName){
         if (appMetric == null){
             inicializarMapas()
         }
@@ -36,24 +37,24 @@ class AppMetric extends Metric{
         controllerMetric.incrementAccess(actionName)
     }
 
-    def addTimeProcesor(String controllerName, String actionName, long time){
+    void addTimeProcessor(String controllerName, String actionName, long time){
         if (appMetric == null){
             inicializarMapas()
         }
         appMetric.addTimeProcessor(time)
         ControllerMetric controllerMetric = getControllerMetricByName(controllerName)
-        controllerMetric.addTimeProcesor(actionName, time)
+        controllerMetric.addTimeProcessor(actionName, time)
     }
 
-    def getAllControllersMetrics(){
+    Collection<ControllerMetric> getAllControllersMetrics(){
         controllersMetrics.values()
     }
 
-    public static String procesarControllerName(controllerName){
+    public static String procesarControllerName(String controllerName){
         (controllerName ?:DEFAULT_NAME).toLowerCase()
     }
 
-    def addRenderTimeProcesor(String controllerName, String actionName, long time) {
+    void addRenderTimeProcessor(String controllerName, String actionName, long time) {
         if (appMetric == null){
             inicializarMapas()
         }
@@ -62,12 +63,12 @@ class AppMetric extends Metric{
         controllerMetric.addRenderTimeProcessor(actionName, time)
     }
 
-    private ControllerMetric getControllerMetricByName(controllerName){
+    private ControllerMetric getControllerMetricByName(String controllerName){
         controllerName = procesarControllerName(controllerName)
         controllersMetrics.get(controllerName)
     }
 
-    def addException(controllerName, actionName){
+    def addException(String controllerName, String actionName){
         if (appMetric == null){
             inicializarMapas()
         }

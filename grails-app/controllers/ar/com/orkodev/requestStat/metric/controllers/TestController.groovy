@@ -5,4 +5,8 @@ class TestController {
     def index() {
 
     }
+
+    def indexException() {
+        throw  new Exception()
+    }
 }

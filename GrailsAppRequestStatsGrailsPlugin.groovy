@@ -45,17 +45,17 @@ Brief summary/description of the plugin.
     }
 
     def doWithSpring = {
-        Integer lowerBound
-        if (Holders.grailsApplication.config?.requestStats?.metric?.lowerBound instanceof Integer) {
-            lowerBound = Holders.grailsApplication.config.requestStats.metric.lowerBound
+        Float boundValue
+        if (Holders.grailsApplication.config?.requestStats?.metric?.lowerBound instanceof Number) {
+            boundValue = Holders.grailsApplication.config.requestStats.metric.lowerBound as Float
         }
 
-        if (!lowerBound){
+        if (!boundValue){
             GroovyClassLoader classLoader = new GroovyClassLoader(getClass().getClassLoader())
             ConfigObject defaultConfig
             try {
                 defaultConfig = new ConfigSlurper().parse(classLoader.loadClass('DefaultAppRequestStatsConfig'))
-                lowerBound = defaultConfig.requestStats.metric.lowerBound
+                boundValue = defaultConfig.requestStats.metric.lowerBound as Float
             } catch (Exception e) {
                 throw RuntimeException(e)
             }
@@ -63,7 +63,7 @@ Brief summary/description of the plugin.
 
         appMetric(AppMetric){
             grailsApplication = ref('grailsApplication')
-            lowerBound = lowerBound
+            lowerBound = boundValue
         }
 
     }

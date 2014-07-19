@@ -1,7 +1,5 @@
 package ar.com.orkodev.requestStat.metric.controllers
 
-import static org.springframework.http.HttpStatus.NOT_FOUND
-
 class MetricController {
 
     def appMetric

@@ -1,11 +1,14 @@
 package ar.com.orkodev.requestStat.metric
 
+import groovy.transform.CompileStatic
+
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicLong
 
 /**
  * Created by orko on 14/07/14.
  */
+@CompileStatic
 class Metric {
 
     String name
@@ -15,7 +18,7 @@ class Metric {
     AtomicInteger lastTimeProcessor
     AtomicInteger lastRenderTimeProcessor
     AtomicInteger totalException
-    Integer lowerBound
+    Float lowerBound
 
     public Metric(){
         timeProcessor = new AtomicLong(0)
@@ -26,53 +29,81 @@ class Metric {
         totalException = new AtomicInteger(0)
     }
 
+    Long getTotalAccess(){
+        return totalAccess.longValue()
+    }
+
+    Long getTimeProcessor(){
+        return timeProcessor.longValue()
+    }
+
+    Long getRenderTimeProcessor(){
+        return renderTimeProcessor.longValue()
+    }
+
+    Integer getLastTimeProcessor(){
+        return lastTimeProcessor.intValue()
+    }
+
+    Integer getLastRenderTimeProcessor(){
+        return lastRenderTimeProcessor.intValue()
+    }
+
+    Integer getTotalException(){
+        return totalException.intValue()
+    }
+
     /**
      * add the proccess time and add total access
      * @param time
      */
-    def addTimeProcessor(long time){
+    void addTimeProcessor(long time){
         timeProcessor.addAndGet(time)
         lastTimeProcessor.set((int)time)
     }
 
-    def incrementAccess(){
+    void incrementAccess(){
         totalAccess.addAndGet(1)
     }
 
-    def addRenderTimeProcessor(long time){
+    void addRenderTimeProcessor(long time){
         renderTimeProcessor.addAndGet(time)
         lastRenderTimeProcessor.set((int)time)
     }
 
-    def addException(){
+    void addException(){
         totalException.incrementAndGet()
     }
 
-    def getAvg(){
-        totalAccess.get() != 0 ? timeProcessor.get() / totalAccess.get() : 0
+    Double getAvg(){
+        totalAccess.get() != 0 ? (Double)(timeProcessor.get().longValue() / totalAccess.get().longValue()) : 0D
     }
 
-    def getTotalTimeProcessor(){
-        timeProcessor.get() + renderTimeProcessor.get()
+    Long getTotalTimeProcessor(){
+        timeProcessor.get().longValue() + renderTimeProcessor.get().longValue()
     }
 
-    def getLastTotalTimeProcessor(){
-        lastTimeProcessor.get() + lastRenderTimeProcessor.get()
+    Long getLastTotalTimeProcessor(){
+        lastTimeProcessor.get().longValue() + lastRenderTimeProcessor.get().longValue()
     }
 
-    def getTotalAvg(){
-        totalAccess.get() != 0 ? totalTimeProcessor / totalAccess.get() : 0
+    Double getTotalAvg(){
+        totalAccess.get() != 0 ? (Double)(totalTimeProcessor / totalAccess.get().longValue()) : 0D
     }
 
-    def getRenderAvg(){
-        totalAccess.get() != 0 ? renderTimeProcessor.get() / totalAccess.get() : 0
+    Double getRenderAvg(){
+        totalAccess.get() != 0 ? (Double)(renderTimeProcessor.get().longValue() / totalAccess.get().longValue()) : 0D
     }
 
-    def getExceptionPercentage(){
-        totalAccess.get() != 0 ? (totalException.get() / totalAccess.get())*100 : 0
+    Double getExceptionPercentage(){
+        exceptionsTotalAccessRelationship() * 100
     }
 
-    def isUnderBound(){
-        exceptionPercentage > this.lowerBound
+    private Double exceptionsTotalAccessRelationship(){
+        totalAccess.get() != 0 ? (Double)(totalException.get().longValue() / totalAccess.get().longValue()) : 0D
+    }
+
+    Boolean isOverBound(){
+        exceptionsTotalAccessRelationship() > this.lowerBound
     }
 }

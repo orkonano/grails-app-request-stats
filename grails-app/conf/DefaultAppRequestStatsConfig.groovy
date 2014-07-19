@@ -5,6 +5,6 @@
 
 requestStats{
 
-    metric.lowerBound = 1
+    metric.lowerBound = 0.05F
 
 }

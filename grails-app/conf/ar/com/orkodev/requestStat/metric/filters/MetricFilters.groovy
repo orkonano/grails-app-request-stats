@@ -24,7 +24,7 @@ class MetricFilters {
                 long end = System.currentTimeMillis()
                 def timeProcess = end - start
                 request[AFTER_TIME_ATTRIBUTE] = end
-                appMetric.addTimeProcesor(controllerName, actionName, timeProcess)
+                appMetric.addTimeProcessor(controllerName, actionName, timeProcess)
                 def controller = AppMetric.procesarControllerName(controllerName)
                 def action = ControllerMetric.procesarActionName(actionName)
                 Metric actualMetric = appMetric.controllersMetrics.get(controller).actionMetrics.get(action)
@@ -41,7 +41,7 @@ class MetricFilters {
                     long start = request[AFTER_TIME_ATTRIBUTE]
                     long end = System.currentTimeMillis()
                     def timeProcess = end - start
-                    appMetric.addRenderTimeProcesor(controllerName, actionName, timeProcess)
+                    appMetric.addRenderTimeProcessor(controllerName, actionName, timeProcess)
                 }
             }
         }

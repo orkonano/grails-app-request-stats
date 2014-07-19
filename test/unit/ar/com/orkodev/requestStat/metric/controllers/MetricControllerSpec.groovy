@@ -59,6 +59,6 @@ class MetricControllerSpec extends Specification {
         controller.metric()
         then: "Response 404"
         response.status == 404
-        view == 'error404'
+        view == '/error404'
     }
 }

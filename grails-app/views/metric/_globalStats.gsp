@@ -53,7 +53,7 @@
             <td>Exception </td>
             <td>${metric.totalException} u</td>
         </tr>
-       <tr ${metric.isUnderBound()  ? "class=danger" : ""}>
+       <tr ${metric.isOverBound()  ? "class=danger" : ""}>
             <td>Exception %</td>
             <td>${metric.exceptionPercentage} %</td>
         </tr>

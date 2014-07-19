@@ -20,7 +20,7 @@
         </thead>
         <tbody>
         <g:each in="${metrics}" var="metric">
-            <tr ${metric.isUnderBound() ? "class=danger" : ""}>
+            <tr ${metric.isOverBound() ? "class=danger" : ""}>
                 <td><g:render template="${templateName}" model="[metric: metric]"/></td>
                 <td>${metric.timeProcessor} ms</td>
                 <td>${metric.lastTimeProcessor} ms</td>
