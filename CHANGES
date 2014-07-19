@@ -1,0 +1,14 @@
+Version 0.1.0
+ - close #1. Se realizadon los test + fix de bugs
+ - Unit test for MetricController
+ - fix bug in _specificStats and ControllerMetric
+ - Close issue #2. Se logro hacer el DefaultConfig
+ - Merge branch 'feature-cp-from-readers' into developer
+ - Subo toda la configuración para deployar en cloudbees repo
+ - Agregado de unidad ms en los tiempos de procesamiento
+ - Se agrego otro archivo de configuracion, para ver si lo toma desde la app
+ - Completo todo el plugin, la primera parte. Faltarían si o si los test. Hay que ver despues de ponerle algo más lindo en el diseño, tipo bootstrap
+ - Files copies. Modificación al archivo de meta-data
+ - Ignore IDE file
+ - init commit
+
