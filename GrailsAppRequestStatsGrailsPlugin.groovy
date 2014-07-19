@@ -10,6 +10,7 @@ class GrailsAppRequestStatsGrailsPlugin {
     def pluginExcludes = [
         "grails-app/views/error.gsp",
         "grails-app/views/index.gsp",
+        "grails-app/views/error404.gsp",
         "grails-app/controllers/ar/com/orkodev/requestStat/metric/controllers/TestController.groovy",
     ]
 
