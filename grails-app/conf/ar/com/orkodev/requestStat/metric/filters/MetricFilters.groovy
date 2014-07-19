@@ -1,10 +1,10 @@
-package grails.app.request.stats
+package ar.com.orkodev.requestStat.metric.filters
 
 import ar.com.orkodev.requestStat.metric.AppMetric
 import ar.com.orkodev.requestStat.metric.ControllerMetric
 import ar.com.orkodev.requestStat.metric.Metric
 
-class MetricFilterFilters {
+class MetricFilters {
 
     def appMetric
     private static final String START_TIME_ATTRIBUTE = 'Controller__START_TIME__'

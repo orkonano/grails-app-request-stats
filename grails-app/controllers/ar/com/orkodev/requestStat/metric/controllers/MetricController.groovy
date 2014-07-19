@@ -1,5 +1,7 @@
 package ar.com.orkodev.requestStat.metric.controllers
 
+import static org.springframework.http.HttpStatus.NOT_FOUND
+
 class MetricController {
 
     def appMetric
@@ -9,6 +11,11 @@ class MetricController {
     }
 
     def metric(String controllerName){
-        render view: 'metric', model: [controllerMetric: appMetric.controllersMetrics.get(controllerName)]
+        if (controllerName){
+            render view: 'metric', model: [controllerMetric: appMetric.controllersMetrics.get(controllerName)]
+        }else{
+            response.status = 404
+            render view: '/error404'
+        }
     }
 }
