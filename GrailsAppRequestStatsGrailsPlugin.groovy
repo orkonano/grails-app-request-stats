@@ -18,7 +18,7 @@ class GrailsAppRequestStatsGrailsPlugin {
     def author = "Mariano Kfuri"
     def authorEmail = "marianoekfuri@gmail.com"
     def description = '''\
-Brief summary/description of the plugin.
+Grails plugin to show request stats
 '''
 
     // URL to the plugin's documentation
