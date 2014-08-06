@@ -3,7 +3,7 @@
  */
 
 
-requestStats{
+requestStats {
 
     metric.lowerBound = 0.05F
 

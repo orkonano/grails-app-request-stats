@@ -10,6 +10,7 @@ class GrailsAppRequestStatsGrailsPlugin {
     def pluginExcludes = [
         "grails-app/views/error.gsp",
         "grails-app/views/index.gsp",
+        "grails-app/views/error404.gsp",
         "grails-app/controllers/ar/com/orkodev/requestStat/metric/controllers/TestController.groovy",
     ]
 
@@ -17,7 +18,7 @@ class GrailsAppRequestStatsGrailsPlugin {
     def author = "Mariano Kfuri"
     def authorEmail = "marianoekfuri@gmail.com"
     def description = '''\
-Brief summary/description of the plugin.
+Grails plugin to show request stats
 '''
 
     // URL to the plugin's documentation
