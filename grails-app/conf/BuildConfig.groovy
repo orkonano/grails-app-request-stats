@@ -17,7 +17,7 @@ grails.project.fork = [
 ]
 
 
-grails.project.repos.default = "cloudbees"
+grails.project.repos.default = "dropbox"
 
 grails.project.dependency.resolver = "maven" // or ivy
 grails.project.dependency.resolution = {
