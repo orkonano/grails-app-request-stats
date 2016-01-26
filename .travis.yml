@@ -3,6 +3,7 @@ branches:
   only:
     - master
     - developer
+    - migrate-grails3
 
 before_script:
  - chmod +x gradlew
